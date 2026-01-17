@@ -14,7 +14,7 @@ phases:
 
   post_build:
     commands:
-      - aws s3 sync dist/* s3://educore-fe --delete
+      - aws s3 sync dist s3://educore-fe --delete
       
 artifacts:
   files:
