@@ -17,5 +17,5 @@ phases:
       - aws s3 sync dist s3://educore-fe --delete
 
 artifacts:
-  base-directory: dist
+  base-directory: frontend/dist
   files: '**/*'
