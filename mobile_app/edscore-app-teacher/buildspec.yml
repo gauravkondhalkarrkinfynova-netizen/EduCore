@@ -8,7 +8,7 @@ phases:
   install:
     commands:
       - echo "=== Installing system dependencies ==="
-      - dnf update
+      - dnf update -y
       - dnf install -y openjdk-17-jdk wget unzip
 
       - echo "=== Installing Android Command Line Tools ==="
