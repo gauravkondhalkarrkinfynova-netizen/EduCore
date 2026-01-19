@@ -8,8 +8,8 @@ phases:
   install:
     commands:
       - echo "=== Installing system dependencies ==="
-      - apt-get update
-      - apt-get install -y openjdk-17-jdk wget unzip
+      - dnf update
+      - dnf install -y openjdk-17-jdk wget unzip
 
       - echo "=== Installing Android Command Line Tools ==="
       - wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
