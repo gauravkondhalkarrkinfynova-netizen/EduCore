@@ -1,0 +1,43 @@
+version: 0.2
+
+env:
+  variables:
+    ANDROID_HOME: "/opt/android"
+
+phases:
+  install:
+    commands:
+      - echo "=== Installing Dependencies ==="
+      - dnf update -y
+      - dnf install -y java-17-amazon-corretto wget unzip
+
+      - echo "=== Installing Android CLI Tools ==="
+      - wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
+      - unzip cmdtools.zip -d /opt/android
+      - mkdir -p /opt/android/cmdline-tools/latest
+      - mv /opt/android/cmdline-tools/bin /opt/android/cmdline-tools/latest/
+      - mv /opt/android/cmdline-tools/lib /opt/android/cmdline-tools/latest/
+      - export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
+
+      - yes | sdkmanager --licenses
+      - sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0" "build-tools;28.0.3"
+
+      - echo "=== Installing Flutter ==="
+      - git clone https://github.com/flutter/flutter.git -b stable
+      - export PATH="$PATH:`pwd`/flutter/bin"
+      - flutter doctor -v
+
+      - cd mobile_app/edscore-app-student-parent
+      - flutter pub get
+
+  build:
+    commands:
+      - flutter build apk --release
+  post_build:
+    commands:
+      - echo "APK Listing:"
+      - ls -R build/app/outputs/flutter-apk/
+artifacts:
+  files:
+    - mobile_app/edscore-app-student-parent/build/app/outputs/flutter-apk/*.apk
+  discard-paths: yes
