@@ -10,7 +10,6 @@ phases:
       - echo "=== Installing Dependencies ==="
       - dnf update -y
       - dnf install -y java-17-amazon-corretto wget unzip
-
       - echo "=== Installing Android CLI Tools ==="
       - wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
       - unzip cmdtools.zip -d /opt/android
