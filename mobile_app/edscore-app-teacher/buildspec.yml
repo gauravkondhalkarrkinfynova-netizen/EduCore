@@ -33,7 +33,10 @@ phases:
   build:
     commands:
       - flutter build apk --release
-
+  post_build:
+    commands:
+      - echo "APK Listing:"
+      - ls -R build/app/outputs/flutter-apk/
 artifacts:
   files:
-    - mobile_app/edscore-app-teacher/build/app/outputs/flutter-apk/app-release.apk
+    - build/app/outputs/flutter-apk/*.apk
