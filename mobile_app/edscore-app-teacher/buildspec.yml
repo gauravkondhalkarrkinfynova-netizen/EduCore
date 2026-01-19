@@ -40,3 +40,4 @@ phases:
 artifacts:
   files:
     -  mobile_app/edscore-app-teacher/build/app/outputs/flutter-apk/*.apk
+    discard-paths: yes
