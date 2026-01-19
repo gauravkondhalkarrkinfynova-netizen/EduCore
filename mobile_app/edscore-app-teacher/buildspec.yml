@@ -7,11 +7,11 @@ env:
 phases:
   install:
     commands:
-      - echo "=== Installing system dependencies ==="
+      - echo "=== Installing Dependencies ==="
       - dnf update -y
-      - dnf install -y openjdk-17-jdk wget unzip
+      - dnf install -y java-17-amazon-corretto wget unzip
 
-      - echo "=== Installing Android Command Line Tools ==="
+      - echo "=== Installing Android CLI Tools ==="
       - wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
       - unzip cmdtools.zip -d /opt/android
       - mkdir -p /opt/android/cmdline-tools/latest
@@ -25,19 +25,15 @@ phases:
       - echo "=== Installing Flutter ==="
       - git clone https://github.com/flutter/flutter.git -b stable
       - export PATH="$PATH:`pwd`/flutter/bin"
-
       - flutter doctor -v
 
-      - echo "=== Entering Flutter project ==="
       - cd mobile_app/edscore-app-teacher
       - flutter pub get
 
   build:
     commands:
-      - echo "=== Building Flutter APK Release ==="
       - cd mobile_app/edscore-app-teacher
       - flutter build apk --release
-      - echo "=== APK Build Complete ==="
 
 artifacts:
   files:
