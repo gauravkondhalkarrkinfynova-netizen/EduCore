@@ -1,19 +1,44 @@
 version: 0.2
 
+env:
+  variables:
+    ANDROID_HOME: "/opt/android"
+
 phases:
   install:
     commands:
-      - echo Installing Flutter...
+      - echo "=== Installing system dependencies ==="
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk wget unzip
+
+      - echo "=== Installing Android Command Line Tools ==="
+      - wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdtools.zip
+      - unzip cmdtools.zip -d /opt/android
+      - mkdir -p /opt/android/cmdline-tools/latest
+      - mv /opt/android/cmdline-tools/bin /opt/android/cmdline-tools/latest/
+      - mv /opt/android/cmdline-tools/lib /opt/android/cmdline-tools/latest/
+      - export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
+
+      - yes | sdkmanager --licenses
+      - sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+      - echo "=== Installing Flutter ==="
       - git clone https://github.com/flutter/flutter.git -b stable
       - export PATH="$PATH:`pwd`/flutter/bin"
-      - flutter doctor
+
+      - flutter doctor -v
+
+      - echo "=== Entering Flutter project ==="
+      - cd mobile_app/edscore-app-teacher
       - flutter pub get
 
   build:
     commands:
-      - echo Building APK...
+      - echo "=== Building Flutter APK Release ==="
+      - cd mobile_app/edscore-app-teacher
       - flutter build apk --release
+      - echo "=== APK Build Complete ==="
 
 artifacts:
   files:
-    - build/app/outputs/flutter-apk/app-release.apk
+    - mobile_app/edscore-app-teacher/build/app/outputs/flutter-apk/app-release.apk
