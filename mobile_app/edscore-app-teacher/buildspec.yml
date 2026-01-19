@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Flutter...
+      - git clone https://github.com/flutter/flutter.git -b stable
+      - export PATH="$PATH:`pwd`/flutter/bin"
+      - flutter doctor
+      - flutter pub get
+
+  build:
+    commands:
+      - echo Building APK...
+      - flutter build apk --release
+
+artifacts:
+  files:
+    - build/app/outputs/flutter-apk/app-release.apk
