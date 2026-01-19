@@ -20,7 +20,7 @@ phases:
       - export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
 
       - yes | sdkmanager --licenses
-      - sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+      - sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0" "build-tools;28.0.3"
 
       - echo "=== Installing Flutter ==="
       - git clone https://github.com/flutter/flutter.git -b stable
@@ -32,9 +32,8 @@ phases:
 
   build:
     commands:
-      - cd mobile_app/edscore-app-teacher
       - flutter build apk --release
 
 artifacts:
   files:
-    - mobile_app/edscore-app-teacher/build/app/outputs/flutter-apk/app-release.apk
+    - build/app/outputs/flutter-apk/app-release.apk
