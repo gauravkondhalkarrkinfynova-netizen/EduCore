@@ -36,4 +36,4 @@ phases:
 
 artifacts:
   files:
-    - build/app/outputs/flutter-apk/app-release.apk
+    - mobile_app/edscore-app-teacher/build/app/outputs/flutter-apk/app-release.apk
