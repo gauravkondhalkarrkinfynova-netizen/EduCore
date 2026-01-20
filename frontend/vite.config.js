@@ -10,14 +10,21 @@ export default defineConfig({
   server: {
     port: 3000,
 
+    // proxy: {
+    //   "/api": {
+    //     target: "http://3.7.212.22:3000",
+    //     changeOrigin: true,
+    //     secure: false,
+    //     rewrite: (path) => path.replace(/^\/api/, ""),
+    //   },
+    // },
     proxy: {
-      "/api": {
-        target: "http://3.7.212.22:3000",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
+  "/v1": {
+    target: "http://3.7.212.22:3000",
+    changeOrigin: true,
+  }
+},
+
   },
   
    build: {
