@@ -18,7 +18,7 @@ const processQueue = (error, token = null) => {
 
 const API = axios.create({
   // baseURL: "/api",
-  baseURL: "http://3.7.212.22:3000"
+  baseURL: "https://3.7.212.22:3000"
 ,
   headers: {
     "Content-Type": "application/json",
