@@ -28,12 +28,12 @@ const API = axios.create({
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
-    const apiKey = import.meta.env.VITE_API_KEY;
+    // const apiKey = import.meta.env.VITE_API_KEY;
 
-    // attach api key
-    if (apiKey) {
-      config.headers["x-api-key"] = apiKey;
-    }
+    // // attach api key
+    // if (apiKey) {
+    //   config.headers["x-api-key"] = apiKey;
+    // }
 
     // attach access token
     if (token) {
