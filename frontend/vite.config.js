@@ -7,20 +7,20 @@ export default defineConfig({
   base: "/",
   plugins: [react(), tailwindcss()],
 
-  server: {
-    port: 3000,
-    strictPort: true,
+  // server: {
+  //   port: 3000,
+  //   strictPort: true,
 
-    proxy: {
-      "/api": {
-        target: "http://3.7.212.22:3000",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://3.7.212.22:3000",
+  //       changeOrigin: true,
+  //       secure: false,
+  //       rewrite: (path) => path.replace(/^\/api/, ""),
+  //     },
+  //   },
    
-  },
+  // },
   
    build: {
     outDir: "dist",
