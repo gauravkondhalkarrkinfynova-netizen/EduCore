@@ -18,7 +18,7 @@ const processQueue = (error, token = null) => {
 
 const API = axios.create({
   // baseURL: "/api",
-  baseURL: "http://Educore-675875761.ap-south-1.elb.amazonaws.com"
+  baseURL: ""
 ,
   headers: {
     "Content-Type": "application/json",
