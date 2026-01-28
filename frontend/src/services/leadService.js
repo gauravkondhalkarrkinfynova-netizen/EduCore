@@ -8,15 +8,15 @@ export const getLeads = (params = {}) => {
 
 // CREATE LEAD
 export const createLead = (data) => {
-  const token = localStorage.getItem("accessToken");
+  // const token = localStorage.getItem("accessToken");
 
-  return API.post("/v1/leads/create", data, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  //return API.post("/v1/leads/create", data);
+  // return API.post("/v1/leads/create", data, {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // });
+  return API.post("/v1/leads/create", data);
 };
 
 // UPDATE LEAD
