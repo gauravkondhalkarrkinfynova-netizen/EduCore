@@ -25,7 +25,7 @@ export const createLead = (data) => {
 export const updateLead = async (id, data) => {
   const token = localStorage.getItem("accessToken"); // or wherever you store it
 
-  return API.patch(`http://3.7.212.22:3000/v1/leads/${id}`, data, {
+  return API.patch(`/v1/leads/${id}`, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
